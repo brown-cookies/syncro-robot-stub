@@ -1,0 +1,57 @@
+# http://localhost:8000
+# py -m http.server 8000
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SYNCRO D8 Console</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+</head>
+
+<body>
+
+    <header>
+        <h1>SYNCRO D8 Console</h1>
+        <p>Task Entry and Self-Report</p>
+    </header>
+
+    <main>
+
+        <section>
+            <h2>Create Task</h2>
+
+            <form id="task-form">
+
+                <label for="task">Task:</label>
+                <input type="text" id="task" name="task" required>
+
+                <br><br>
+
+                <label for="deadline">Deadline:</label>
+                <input type="datetime-local" id="deadline" name="deadline" required>
+
+                <br><br>
+
+                <button type="submit">Create Task</button>
+                
+            </form>
+        </section>
+
+        <section>
+            <h2>My Tasks</h2>
+
+            <div id="task-list">
+                <p>No tasks created yet.</p>
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="app.js"></script>
+
+</body>
+</html>
