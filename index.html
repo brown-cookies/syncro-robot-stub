@@ -1,57 +1,48 @@
-# http://localhost:8000
-# py -m http.server 8000
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#710e1d">
     <title>SYNCRO D8 Console</title>
     <link rel="stylesheet" href="style.css">
     <link rel="manifest" href="manifest.json">
 </head>
-
 <body>
-
-    <header>
-        <h1>SYNCRO D8 Console</h1>
-        <p>Task Entry and Self-Report</p>
+    <header class="app-header">
+        <div>
+            <h1>SYNCRO</h1>
+            <p class="muted">Plan your tasks. Check in when they're due.</p>
+        </div>
+        <span id="net-status" class="badge" hidden>Offline · saved on this device</span>
     </header>
 
-    <main>
-
-        <section>
-            <h2>Create Task</h2>
-
-            <form id="task-form">
-
-                <label for="task">Task:</label>
-                <input type="text" id="task" name="task" required>
-
-                <br><br>
-
-                <label for="deadline">Deadline:</label>
-                <input type="datetime-local" id="deadline" name="deadline" required>
-
-                <br><br>
-
-                <button type="submit">Create Task</button>
-                
-            </form>
-        </section>
-
-        <section>
-            <h2>My Tasks</h2>
-
-            <div id="task-list">
-                <p>No tasks created yet.</p>
+    <main class="stack">
+        <form id="task-form" class="panel stack" novalidate>
+            <h2>New task</h2>
+            <div class="field">
+                <label for="task">What will you do?</label>
+                <input type="text" id="task" name="task" autocomplete="off" required>
             </div>
+            <div class="field">
+                <label for="deadline">When is it due?</label>
+                <input type="datetime-local" id="deadline" name="deadline" required>
+            </div>
+            <p id="form-error" class="error" role="alert" hidden></p>
+            <button type="submit" class="btn btn-primary">Add task</button>
+        </form>
 
+        <section class="stack" aria-labelledby="list-heading">
+            <h2 id="list-heading">Your tasks</h2>
+            <ul id="task-list" class="stack list-reset"></ul>
         </section>
-
     </main>
 
-    <script src="app.js"></script>
+    <div id="toast" class="toast" role="status" aria-live="polite" hidden>
+        <span id="toast-text"></span>
+        <button type="button" id="toast-undo" class="btn btn-ghost">Undo</button>
+    </div>
 
+    <script src="app.js"></script>
 </body>
 </html>
